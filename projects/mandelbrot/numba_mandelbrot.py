@@ -1,7 +1,7 @@
 import pygame as pg
 import numpy as np
 import math
-import numba_mandelbrot
+import numba
 
 # settings
 res = width, height = 800, 450
@@ -20,7 +20,7 @@ class Fractal:
         self.screen_array = np.full((width, height, 3), [0, 0, 0], dtype=np.uint8)
 
     @staticmethod
-    @numba_mandelbrot.njit(fastmath=True, parallel=True)
+    @numba.njit(fastmath=True, parallel=True)
     def render(screen_array):
         for x in numba_mandelbrot.prange(width):
             for y in range(height):
